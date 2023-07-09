@@ -41,7 +41,10 @@
             nombreProgParSemaine = new TextBox();
             unProgValiderPlageHorraire = new Button();
             plusieursProgValiderNbProg = new Button();
-            plusieursProgValiderNbJourParProg = new Button();   
+            plusieursProgValiderNbJourParProg = new Button();
+            plusieursProgValiderPlageHorraires = new Button();
+            PProgPH = new Button();
+            PProgGo = new Button();
             vScrollBar = new VScrollBar();
             panel1 = new Panel();
             panel1.SuspendLayout();
@@ -194,7 +197,6 @@
             unProgGo.TabIndex = 14;
             unProgGo.Text = "Calculer";
             unProgGo.UseVisualStyleBackColor = true;
-            // unProgGo.Click += 
             // 
             // plusieursProgValiderNbProg
             // 
@@ -217,6 +219,35 @@
             plusieursProgValiderNbJourParProg.UseVisualStyleBackColor = true;          
             plusieursProgValiderNbJourParProg.Click += plusieursProgValiderNbJourParProg_Click;
             plusieursProgValiderNbJourParProg.KeyPress += plusieursProgValiderNbProg_KeyPress;
+            //
+            // plusieursProgValiderPlageHorraires
+            //
+            plusieursProgValiderPlageHorraires.Name = "plusieursProgValiderPlageHorraires";
+            plusieursProgValiderPlageHorraires.Size = new Size(75, 23);
+            plusieursProgValiderPlageHorraires.Visible = false; 
+            plusieursProgValiderPlageHorraires.TabIndex = 16;
+            plusieursProgValiderPlageHorraires.Text = "Valider";
+            plusieursProgValiderPlageHorraires.UseVisualStyleBackColor = true;
+            plusieursProgValiderPlageHorraires.Click += plusieursProgValiderPlageHorraires_Click;
+
+            //
+            // PProgPH
+            //
+            PProgPH.Visible = false;
+            PProgPH.Name = "GO!";
+            PProgPH.Size = new Size(75, 23);
+            PProgPH.TabIndex = 15;
+            PProgPH.Text = "Valider";
+            PProgPH.UseVisualStyleBackColor = true;
+            //
+            // PProgGo
+            //
+            PProgGo.Visible = false;
+            PProgGo.Name = "GO!";
+            PProgGo.Size = new Size(75, 23);
+            PProgGo.TabIndex = 17;
+            PProgGo.Text = "Calculer";
+            PProgGo.UseVisualStyleBackColor = true;
             // 
             // vScrollBar
             // 
@@ -231,6 +262,8 @@
             panel1.AllowDrop = true;
             panel1.AutoScroll = true;
             panel1.AutoSize = true;
+            panel1.Controls.Add(PProgGo);
+            panel1.Controls.Add(plusieursProgValiderPlageHorraires);
             panel1.Controls.Add(plusieursProgValiderNbJourParProg);
             panel1.Controls.Add(plusieursProgValiderNbProg);
             panel1.Controls.Add(unProgValiderPlageHorraire);
@@ -251,7 +284,6 @@
             panel1.Size = new Size(1424, 961);
             panel1.TabIndex = 14;
             panel1.Scroll += VScrollBar_Scroll;
-            panel1.Paint += panel1_Paint;
             // 
             // CTM
             // 
@@ -286,6 +318,9 @@
         private Button unProgValiderPlageHorraire;
         private Button plusieursProgValiderNbProg;
         private Button plusieursProgValiderNbJourParProg;
+        private Button plusieursProgValiderPlageHorraires;
+        private Button PProgPH;
+        private Button PProgGo;
         private Panel panel1;
         private VScrollBar vScrollBar;
     }

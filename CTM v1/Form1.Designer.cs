@@ -36,10 +36,18 @@
             buttonReinitialiser = new Button();
             unProgrammeBriefing = new TextBox();
             unProgPlageHorraires = new TextBox();
+            unProgGo = new Button();
             plusieursProgrammesBriefing = new TextBox();
             nombreProgParSemaine = new TextBox();
             unProgValiderPlageHorraire = new Button();
             plusieursProgValiderNbProg = new Button();
+            plusieursProgValiderNbJourParProg = new Button();
+            plusieursProgValiderPlageHorraires = new Button();
+            PProgPH = new Button();
+            PProgGo = new Button();
+            vScrollBar = new VScrollBar();
+            panel1 = new Panel();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // objectifDuProgramme
@@ -120,7 +128,7 @@
             buttonReinitialiser.BackColor = Color.Red;
             buttonReinitialiser.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             buttonReinitialiser.ForeColor = Color.White;
-            buttonReinitialiser.Location = new Point(1319, 12);
+            buttonReinitialiser.Location = new Point(1307, 12);
             buttonReinitialiser.Name = "buttonReinitialiser";
             buttonReinitialiser.Size = new Size(93, 43);
             buttonReinitialiser.TabIndex = 6;
@@ -179,6 +187,17 @@
             unProgValiderPlageHorraire.Text = "Valider";
             unProgValiderPlageHorraire.UseVisualStyleBackColor = true;
             unProgValiderPlageHorraire.Click += unProgValiderPlageHorraire_Click;
+            unProgValiderPlageHorraire.KeyPress += unProgValiderPlageHorraire_KeyPress;
+            //
+            // unProgGo
+            //
+            unProgGo.Visible = false;
+            unProgGo.Name = "GO!";
+            unProgGo.Size = new Size(75, 23);
+            unProgGo.TabIndex = 14;
+            unProgGo.Text = "Calculer";
+            unProgGo.UseVisualStyleBackColor = true;
+            unProgGo.Click += UnProgGo_Click;
             // 
             // plusieursProgValiderNbProg
             // 
@@ -189,6 +208,83 @@
             plusieursProgValiderNbProg.Text = "Valider";
             plusieursProgValiderNbProg.UseVisualStyleBackColor = true;
             plusieursProgValiderNbProg.Click += plusieursProgValiderNbProg_Click;
+            plusieursProgValiderNbProg.KeyPress += plusieursProgValiderNbProg_KeyPress;
+            //
+            // plusieursProgValiderNbJourParProg
+            //               
+            plusieursProgValiderNbJourParProg.Name = "plusieursProgValiderNbJourParProg";
+            plusieursProgValiderNbJourParProg.Size = new Size(75, 23);
+            plusieursProgValiderNbJourParProg.Visible = false;
+            plusieursProgValiderNbJourParProg.TabIndex = 13;
+            plusieursProgValiderNbJourParProg.Text = "Valider";
+            plusieursProgValiderNbJourParProg.UseVisualStyleBackColor = true;          
+            plusieursProgValiderNbJourParProg.Click += plusieursProgValiderNbJourParProg_Click;
+            plusieursProgValiderNbJourParProg.KeyPress += plusieursProgValiderNbProg_KeyPress;
+            //
+            // plusieursProgValiderPlageHorraires
+            //
+            plusieursProgValiderPlageHorraires.Name = "plusieursProgValiderPlageHorraires";
+            plusieursProgValiderPlageHorraires.Size = new Size(75, 23);
+            plusieursProgValiderPlageHorraires.Visible = false; 
+            plusieursProgValiderPlageHorraires.TabIndex = 16;
+            plusieursProgValiderPlageHorraires.Text = "Valider";
+            plusieursProgValiderPlageHorraires.UseVisualStyleBackColor = true;
+            plusieursProgValiderPlageHorraires.Click += plusieursProgValiderPlageHorraires_Click;
+
+            //
+            // PProgPH
+            //
+            PProgPH.Visible = false;
+            PProgPH.Name = "GO!";
+            PProgPH.Size = new Size(75, 23);
+            PProgPH.TabIndex = 15;
+            PProgPH.Text = "Valider";
+            PProgPH.UseVisualStyleBackColor = true;
+            //
+            // PProgGo
+            //
+            PProgGo.Visible = false;
+            PProgGo.Name = "GO!";
+            PProgGo.Size = new Size(75, 23);
+            PProgGo.TabIndex = 17;
+            PProgGo.Text = "Calculer";
+            PProgGo.UseVisualStyleBackColor = true;
+            // 
+            // vScrollBar
+            // 
+            vScrollBar.Dock = DockStyle.Right;
+            vScrollBar.Location = new Point(0, 0);
+            vScrollBar.Name = "vScrollBar";
+            vScrollBar.Size = new Size(17, 80);
+            vScrollBar.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            panel1.AllowDrop = true;
+            panel1.AutoScroll = true;
+            panel1.AutoSize = true;
+            panel1.Controls.Add(PProgGo);
+            panel1.Controls.Add(plusieursProgValiderPlageHorraires);
+            panel1.Controls.Add(plusieursProgValiderNbJourParProg);
+            panel1.Controls.Add(plusieursProgValiderNbProg);
+            panel1.Controls.Add(unProgValiderPlageHorraire);
+            panel1.Controls.Add(nombreProgParSemaine);
+            panel1.Controls.Add(plusieursProgrammesBriefing);
+            panel1.Controls.Add(unProgGo);
+            panel1.Controls.Add(unProgPlageHorraires);
+            panel1.Controls.Add(unProgrammeBriefing);
+            panel1.Controls.Add(buttonReinitialiser);
+            panel1.Controls.Add(explicationFonctionnel1);
+            panel1.Controls.Add(plusieursProgrammes);
+            panel1.Controls.Add(unProgramme);
+            panel1.Controls.Add(titre);
+            panel1.Controls.Add(objectifDuProgramme);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1424, 961);
+            panel1.TabIndex = 14;
+            panel1.Scroll += VScrollBar_Scroll;
             // 
             // CTM
             // 
@@ -196,22 +292,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveCaption;
             ClientSize = new Size(1424, 961);
-            Controls.Add(plusieursProgValiderNbProg);
-            Controls.Add(unProgValiderPlageHorraire);
-            Controls.Add(nombreProgParSemaine);
-            Controls.Add(plusieursProgrammesBriefing);
-            Controls.Add(unProgPlageHorraires);
-            Controls.Add(unProgrammeBriefing);
-            Controls.Add(buttonReinitialiser);
-            Controls.Add(explicationFonctionnel1);
-            Controls.Add(plusieursProgrammes);
-            Controls.Add(unProgramme);
-            Controls.Add(titre);
-            Controls.Add(objectifDuProgramme);
+            Controls.Add(panel1);
             Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = SystemColors.ActiveCaptionText;
             Name = "CTM";
             Text = "CTM - Calculateur de température moyenne";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -226,9 +313,16 @@
         private CheckBox plusieursProgrammes;
         private TextBox unProgrammeBriefing;
         private TextBox unProgPlageHorraires;
+        private Button unProgGo;
         private TextBox plusieursProgrammesBriefing;
         private TextBox nombreProgParSemaine;
         private Button unProgValiderPlageHorraire;
         private Button plusieursProgValiderNbProg;
+        private Button plusieursProgValiderNbJourParProg;
+        private Button plusieursProgValiderPlageHorraires;
+        private Button PProgPH;
+        private Button PProgGo;
+        private Panel panel1;
+        private VScrollBar vScrollBar;
     }
 }

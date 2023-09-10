@@ -26,6 +26,7 @@ namespace CTM_v1
         private TextBox[]? textboxesTemperature;
         private TextBox[]? indiqHorraire;
         private TextBox[]? indiqTemperature;
+        private TextBox? reponseCalcul;
 
         // Plusieurs Prog
         private TextBox? explicationPProg;
@@ -119,14 +120,14 @@ namespace CTM_v1
 
         }
 
-        private void buttonReinitialiser_Click(object sender, EventArgs e)
+        public void buttonReinitialiser_Click(object sender, EventArgs e)
         {
             //Application.Restart();
-            
+
             // Réinitialiser les Axes X ,Y
-            derniereLocation = new Point(0,0); 
-            derniereLocationPP = new Point(0,0);
-            derniereLocationPPMaj = new Point(0,0);
+            derniereLocation = new Point(0, 0);
+            derniereLocationPP = new Point(0, 0);
+            derniereLocationPPMaj = new Point(0, 0);
 
             // Réinitialiser les cases
             unProgramme.Checked = false;
@@ -142,7 +143,7 @@ namespace CTM_v1
             valeurEntreeParUtilisateurPProg = 0;
 
             // Réinitialiser les contrôles
-            if (explication != null) 
+            if (explication != null)
             {
                 explication.Visible = false;
             }
@@ -177,6 +178,13 @@ namespace CTM_v1
                 {
                     textBox.Text = string.Empty;
                 }
+            }
+
+            if (reponseCalcul != null)
+            {
+
+                reponseCalcul.Text = string.Empty;
+
             }
 
             if (explicationPProg != null)
@@ -276,7 +284,7 @@ namespace CTM_v1
             numProgrammesList2.Clear();
             pProgPlageHorrairesList.Clear();
             textboxesHorraire2List.Clear();
-            
+
         }
 
         private void VScrollBar_Scroll(object sender, ScrollEventArgs e)
@@ -318,6 +326,13 @@ namespace CTM_v1
 
             if (currentCheckBox.Checked)
             {
+                if (plusieursProgrammes.Checked)
+                {
+                    for (int i = 0; i < 1; i++)
+                    {
+                        buttonReinitialiser_Click(sender, e);
+                    }
+                }
                 plusieursProgrammes.Checked = false;
             }
 
@@ -373,7 +388,14 @@ namespace CTM_v1
             if (unProgGo != null)
             {
                 unProgGo.Visible = false;
-            }           
+            }
+
+            if (reponseCalcul != null)
+            {
+
+                reponseCalcul.Visible = false;
+
+            }
         }
 
         public void unProgValiderPlageHorraire_Click(object sender, EventArgs e) // ETAPE 1
@@ -503,7 +525,7 @@ namespace CTM_v1
         public double CalculerReponse()
         {
             double add = 0.0;
-            
+
             if (textboxesHorraire != null && textboxesTemperature != null && textboxesHorraire.Length == textboxesTemperature.Length)
             {
                 for (int i = 0; i < textboxesHorraire.Length; i++)
@@ -517,12 +539,14 @@ namespace CTM_v1
             }
 
             double moy = add / 24.0;
-            return moy;
+            string moyFormatted = moy.ToString("F2");
+
+            return double.Parse(moyFormatted);
         }
 
         public void UnProgGo_Click(object sender, EventArgs e)
         {
-            TextBox reponseCalcul = new TextBox();
+            reponseCalcul = new TextBox();
             reponseCalcul.Size = new Size(100, 25);
 
             // Calculer la réponse en fonction des valeurs dans textboxesHorraire et textboxesTemperature
@@ -548,9 +572,16 @@ namespace CTM_v1
 
             if (currentCheckBox.Checked)
             {
+                if (unProgramme.Checked)
+                {
+                    for (int i = 0; i < 1; i++)
+                    {
+                        buttonReinitialiser_Click(sender, e);
+                    }
+                }
                 unProgramme.Checked = false;
             }
-            
+
             if (explicationPProg != null) // Plusieurs Prog
             {
                 explicationPProg.Visible = false;
@@ -594,7 +625,7 @@ namespace CTM_v1
                 foreach (TextBox textBox in textboxesHorraire2List)
                 {
                     textBox.Visible = false;
-                }             
+                }
             }
 
             if (textboxesTemperature2 != null)
@@ -607,7 +638,7 @@ namespace CTM_v1
 
             if (pProgPlageHorrairesList != null)
             {
-                foreach(TextBox textBox in pProgPlageHorrairesList)
+                foreach (TextBox textBox in pProgPlageHorrairesList)
                 {
                     textBox.Visible = false;
                 }
@@ -762,17 +793,17 @@ namespace CTM_v1
                                 sum = sum + int.Parse(valeurInscrit);
                                 if (sum > 7)
                                 {
-                                    MessageBox.Show("Il n'est pas possible que la somme des jours par programme dépassent les 7 jours de la semaine.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);                                   
+                                    MessageBox.Show("Il n'est pas possible que la somme des jours par programme dépassent les 7 jours de la semaine.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                                 else
                                 {
-                                    foreach(TextBox textboxesnbprog in textboxesnbprogList)
+                                    foreach (TextBox textboxesnbprog in textboxesnbprogList)
                                     {
                                         textboxesnbprog.ReadOnly = true;
                                     }
                                     // Appel les méthodes de la classe 'plusieurs prog box creation'
                                     PProgIndicationPlageHorraires(derniereLocationPPMaj);
-                                }                              
+                                }
                             }
                             else
                             {
@@ -876,9 +907,9 @@ namespace CTM_v1
         private void plusieursProgValiderPlageHorraires_Click(object sender, EventArgs e)
         {
             if (textboxesHorraire2 != null)
-            {             
+            {
                 foreach (TextBox textBox in textboxesHorraire2)
-                {                  
+                {
                     if (textBox.Text != "")
                     {
                         string valeurInscrit = textBox.Text;
@@ -941,10 +972,10 @@ namespace CTM_v1
                     numProgramme2.Visible = true;
                     panel1.Controls.Add(numProgramme2);
                     numProgrammesList2.Add(numProgramme2);
-                } 
-                
+                }
+
                 v2 = 0;
-                
+
                 for (int i = 0; i < valeurInt; i++)
                 {
                     v2++;
@@ -954,7 +985,7 @@ namespace CTM_v1
                     horaireTextBox.Visible = true;
                     panel1.Controls.Add(horaireTextBox);
                     horaireTextBoxList.Add(horaireTextBox);
-                    
+
 
                     TextBox indiqHoraireTextBox = new TextBox();
                     indiqHoraireTextBox.Location = new Point(dernierX + 100, dernierY + 50);
@@ -998,6 +1029,6 @@ namespace CTM_v1
             PProgPH.Location = derniereLocationPPMaj;
             PProgPH.Visible = true;
         }
-        
+
     }
 }

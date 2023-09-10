@@ -75,7 +75,7 @@
             titre.ReadOnly = true;
             titre.Size = new Size(278, 43);
             titre.TabIndex = 1;
-            titre.Text = "CALCULATEUR DE TEMPERATURE MOYENNE\nVersion 1.0";
+            titre.Text = "CALCULATEUR DE TEMPERATURE MOYENNE\nVersion 0.8";
             titre.TextChanged += titre_TextChanged;
             // 
             // unProgramme
@@ -157,6 +157,17 @@
             unProgPlageHorraires.TabIndex = 8;
             unProgPlageHorraires.TextChanged += unProgPlageHorraires_TextChanged;
             // 
+            // unProgGo
+            // 
+            unProgGo.Location = new Point(0, 0);
+            unProgGo.Name = "unProgGo";
+            unProgGo.Size = new Size(75, 23);
+            unProgGo.TabIndex = 14;
+            unProgGo.Text = "Calculer";
+            unProgGo.UseVisualStyleBackColor = true;
+            unProgGo.Visible = false;
+            unProgGo.Click += UnProgGo_Click;
+            // 
             // plusieursProgrammesBriefing
             // 
             plusieursProgrammesBriefing.BackColor = Color.LightCoral;
@@ -188,16 +199,6 @@
             unProgValiderPlageHorraire.UseVisualStyleBackColor = true;
             unProgValiderPlageHorraire.Click += unProgValiderPlageHorraire_Click;
             unProgValiderPlageHorraire.KeyPress += unProgValiderPlageHorraire_KeyPress;
-            //
-            // unProgGo
-            //
-            unProgGo.Visible = false;
-            unProgGo.Name = "GO!";
-            unProgGo.Size = new Size(75, 23);
-            unProgGo.TabIndex = 14;
-            unProgGo.Text = "Calculer";
-            unProgGo.UseVisualStyleBackColor = true;
-            unProgGo.Click += UnProgGo_Click;
             // 
             // plusieursProgValiderNbProg
             // 
@@ -209,46 +210,49 @@
             plusieursProgValiderNbProg.UseVisualStyleBackColor = true;
             plusieursProgValiderNbProg.Click += plusieursProgValiderNbProg_Click;
             plusieursProgValiderNbProg.KeyPress += plusieursProgValiderNbProg_KeyPress;
-            //
+            // 
             // plusieursProgValiderNbJourParProg
-            //               
+            // 
+            plusieursProgValiderNbJourParProg.Location = new Point(0, 0);
             plusieursProgValiderNbJourParProg.Name = "plusieursProgValiderNbJourParProg";
             plusieursProgValiderNbJourParProg.Size = new Size(75, 23);
-            plusieursProgValiderNbJourParProg.Visible = false;
             plusieursProgValiderNbJourParProg.TabIndex = 13;
             plusieursProgValiderNbJourParProg.Text = "Valider";
-            plusieursProgValiderNbJourParProg.UseVisualStyleBackColor = true;          
+            plusieursProgValiderNbJourParProg.UseVisualStyleBackColor = true;
+            plusieursProgValiderNbJourParProg.Visible = false;
             plusieursProgValiderNbJourParProg.Click += plusieursProgValiderNbJourParProg_Click;
             plusieursProgValiderNbJourParProg.KeyPress += plusieursProgValiderNbProg_KeyPress;
-            //
+            // 
             // plusieursProgValiderPlageHorraires
-            //
+            // 
+            plusieursProgValiderPlageHorraires.Location = new Point(0, 0);
             plusieursProgValiderPlageHorraires.Name = "plusieursProgValiderPlageHorraires";
             plusieursProgValiderPlageHorraires.Size = new Size(75, 23);
-            plusieursProgValiderPlageHorraires.Visible = false; 
             plusieursProgValiderPlageHorraires.TabIndex = 16;
             plusieursProgValiderPlageHorraires.Text = "Valider";
             plusieursProgValiderPlageHorraires.UseVisualStyleBackColor = true;
+            plusieursProgValiderPlageHorraires.Visible = false;
             plusieursProgValiderPlageHorraires.Click += plusieursProgValiderPlageHorraires_Click;
-
-            //
+            // 
             // PProgPH
-            //
-            PProgPH.Visible = false;
-            PProgPH.Name = "GO!";
+            // 
+            PProgPH.Location = new Point(0, 0);
+            PProgPH.Name = "PProgPH";
             PProgPH.Size = new Size(75, 23);
             PProgPH.TabIndex = 15;
             PProgPH.Text = "Valider";
             PProgPH.UseVisualStyleBackColor = true;
-            //
+            PProgPH.Visible = false;
+            // 
             // PProgGo
-            //
-            PProgGo.Visible = false;
-            PProgGo.Name = "GO!";
+            // 
+            PProgGo.Location = new Point(0, 0);
+            PProgGo.Name = "PProgGo";
             PProgGo.Size = new Size(75, 23);
             PProgGo.TabIndex = 17;
             PProgGo.Text = "Calculer";
             PProgGo.UseVisualStyleBackColor = true;
+            PProgGo.Visible = false;
             // 
             // vScrollBar
             // 

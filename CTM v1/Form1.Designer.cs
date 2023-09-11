@@ -1,4 +1,4 @@
-﻿namespace CTM_v1
+namespace CTM_v1
 {
     partial class CTM
     {

@@ -243,6 +243,7 @@ namespace CTM_v1
             PProgPH.Text = "Valider";
             PProgPH.UseVisualStyleBackColor = true;
             PProgPH.Visible = false;
+            PProgPH.Click += PProgPH_Click;
             // 
             // PProgGo
             // 
@@ -268,6 +269,7 @@ namespace CTM_v1
             panel1.AutoScroll = true;
             panel1.AutoSize = true;
             panel1.Controls.Add(PProgGo);
+            panel1.Controls.Add(PProgPH);
             panel1.Controls.Add(plusieursProgValiderPlageHorraires);
             panel1.Controls.Add(plusieursProgValiderNbJourParProg);
             panel1.Controls.Add(plusieursProgValiderNbProg);
@@ -306,6 +308,11 @@ namespace CTM_v1
             ResumeLayout(false);
             PerformLayout();
         }
+
+        /*private void PProgPH_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }*/
 
         #endregion
 

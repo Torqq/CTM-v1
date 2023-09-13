@@ -17,7 +17,7 @@ namespace CTM_v1
         /// <summary>
         /// Ici le code qui permet à l'utilisateur de donner les données au programme + Creation des TextBoxes + Calcul.
         /// </summary>
-
+        int nbProg = 0;
         public int valeurEntreeParUtilisateur { get; set; }
         public int valeurEntreeParUtilisateurPProg { get; set; }
 
@@ -47,6 +47,7 @@ namespace CTM_v1
         Point derniereLocationPP = new Point();
         Point derniereLocationPPMaj = new Point();
         Point derniereLocationPPMaj2 = new Point();
+        Point finalLocation = new Point();
 
         private List<TextBox> textboxesnbprogList = new List<TextBox>();
         private List<TextBox> numProgrammesList = new List<TextBox>();
@@ -57,6 +58,7 @@ namespace CTM_v1
         private List<TextBox> indiqHoraireTextBoxList = new List<TextBox>();
         private List<TextBox> temperatureTextBoxList = new List<TextBox>();
         private List<TextBox> indiqTemperatureTextBoxList = new List<TextBox>();
+        private List<Programme> programmes = new List<Programme>();
 
         public CTM()
         {
@@ -76,20 +78,6 @@ namespace CTM_v1
             nombreProgParSemaine.Visible = plusieursProgrammes.Checked;
             plusieursProgValiderNbProg.Visible = plusieursProgrammes.Checked;
         }
-
-        public class ValeurJourParProg
-        {
-            public List<int> Donnees { get; } = new List<int>();
-        }
-
-        public ValeurJourParProg InstanceValeurJourParProg { get; } = new ValeurJourParProg();
-
-        public class PProgPlageHorraires
-        {
-            public List<int> PPPH { get; } = new List<int>();
-        }
-
-        public PProgPlageHorraires InstancePProgPlageHorraires { get; } = new PProgPlageHorraires();
 
         private void unProgramme_Validated(object sender, EventArgs e)
         {
@@ -129,6 +117,7 @@ namespace CTM_v1
             derniereLocation = new Point(0, 0);
             derniereLocationPP = new Point(0, 0);
             derniereLocationPPMaj = new Point(0, 0);
+            finalLocation = new Point(0, 0);
 
             // Réinitialiser les cases
             unProgramme.Checked = false;
@@ -145,8 +134,8 @@ namespace CTM_v1
 
             //Réinitialiser les instances
             InstancePProgPlageHorraires.PPPH.Clear();
-            InstanceValeurJourParProg.Donnees.Clear();
-            
+            InstanceValeurJourParProg.NBJPP.Clear();
+
 
             // Réinitialiser les contrôles
             if (explication != null)
@@ -304,6 +293,13 @@ namespace CTM_v1
                 indiqTemperatureTextBox.Dispose();
             }
 
+            if (reponseCalcul != null)
+            {
+                reponseCalcul.Dispose();
+                reponseCalcul = null;
+            }
+
+
             // Réinitialiser les Collections
             horaireTextBoxList.Clear();
             indiqHoraireTextBoxList.Clear();
@@ -314,6 +310,7 @@ namespace CTM_v1
             numProgrammesList2.Clear();
             pProgPlageHorrairesList.Clear();
             textboxesHorraire2List.Clear();
+            programmes.Clear();
 
         }
 
@@ -365,7 +362,7 @@ namespace CTM_v1
                 }
                 plusieursProgrammes.Checked = false;
             }
-
+            
             if (explication != null)
             {
                 explication.Visible = false;
@@ -616,8 +613,35 @@ namespace CTM_v1
 
 
         /*____________________________________________________________________________________________________________________________________________________________*/
+        // PLUSIEURS PROGs
 
-        private void plusieursProgrammes_CheckedChanged(object sender, EventArgs e) // PLUSIEURS PROG
+        public class ValeurJourParProg
+        {
+            public List<int> NBJPP { get; } = new List<int>(); // Dédié aux calculs.
+        }
+
+        public ValeurJourParProg InstanceValeurJourParProg { get; } = new ValeurJourParProg();
+
+        public class PProgPlageHorraires
+        {
+            public List<int> PPPH { get; } = new List<int>(); // Dédié à la création de Textbox.
+        }
+
+        public PProgPlageHorraires InstancePProgPlageHorraires { get; } = new PProgPlageHorraires();
+
+        public class Programme
+        {
+            public List<double> Horaires { get; set; }
+            public List<double> Temperatures { get; set; }
+
+            public Programme()
+            {
+                Horaires = new List<double>();
+                Temperatures = new List<double>();
+            }
+        }
+
+        private void plusieursProgrammes_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox currentCheckBox = (CheckBox)sender;
 
@@ -636,7 +660,7 @@ namespace CTM_v1
                 }
                 unProgramme.Checked = false;
             }
-
+            
             if (explicationPProg != null) // Plusieurs Prog
             {
                 explicationPProg.Visible = false;
@@ -729,8 +753,9 @@ namespace CTM_v1
 
                 if (int.TryParse(valeurInscrit, out tempValeurProgParSemaine) && tempValeurProgParSemaine != 0)
                 {
-                    if (tempValeurProgParSemaine <= 7)
+                    if (tempValeurProgParSemaine < 7)
                     {
+                        nbProg = tempValeurProgParSemaine;
                         valeurEntreeParUtilisateurPProg = tempValeurProgParSemaine;
                         nombreProgParSemaine.ReadOnly = true;
 
@@ -739,16 +764,23 @@ namespace CTM_v1
                         PlusieursProgNbProgBoxCreation();
                     }
 
+                    else if (tempValeurProgParSemaine == 7)
+                    {
+                        MessageBox.Show("Si vous avez 7 jours dans un programme veuillez cocher la case 1 programme en amont.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        buttonReinitialiser_Click(null, EventArgs.Empty);
+                    }
+
                     else
                     {
                         MessageBox.Show("Il n'est pas possible d'avoir plus de programmes qu'il n'y a de jours par semaine.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                        buttonReinitialiser_Click(null, EventArgs.Empty);
                     }
                 }
 
                 else
                 {
                     MessageBox.Show("Veuillez entrer un nombre valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    buttonReinitialiser_Click(null, EventArgs.Empty);
                 }
 
             }
@@ -817,7 +849,7 @@ namespace CTM_v1
                 indiqnbjoursparprog[i].Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
                 indiqnbjoursparprog[i].BackColor = SystemColors.InactiveCaption;
                 indiqnbjoursparprog[i].BorderStyle = BorderStyle.None;
-                indiqnbjoursparprog[i].Text = ("<- Nombres de jours pour le programme " + v);
+                indiqnbjoursparprog[i].Text = ("<- Nombres de jours dans le programme " + v);
                 indiqnbjoursparprog[i].ReadOnly = true;
                 indiqnbjoursparprog[i].Enabled = false;
                 panel1.Controls.Add(indiqnbjoursparprog[i]);
@@ -845,7 +877,7 @@ namespace CTM_v1
                         {
                             if (tempValeurJourParProg < 7)
                             {
-                                InstanceValeurJourParProg.Donnees.Add(tempValeurJourParProg);
+                                InstanceValeurJourParProg.NBJPP.Add(tempValeurJourParProg);
                                 sum = sum + int.Parse(valeurInscrit);
                                 if (sum > 7)
                                 {
@@ -871,6 +903,7 @@ namespace CTM_v1
                         else
                         {
                             MessageBox.Show("Veuillez entrer un nombre valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            buttonReinitialiser_Click(null, EventArgs.Empty);
                         }
                     }
                 }
@@ -959,8 +992,6 @@ namespace CTM_v1
             plusieursProgValiderPlageHorraires.Visible = true;
         }
 
-
-
         private void plusieursProgValiderPlageHorraires_Click(object sender, EventArgs e)
         {
             if (textboxesHorraire2List != null)
@@ -974,7 +1005,7 @@ namespace CTM_v1
                         string valeurInscrit = textBox.Text;
                         int tempValeurJourParProg;
 
-                        if (int.TryParse(valeurInscrit, out tempValeurJourParProg) && tempValeurJourParProg != 0 && tempValeurJourParProg is int)
+                        if (int.TryParse(valeurInscrit, out tempValeurJourParProg) && tempValeurJourParProg != 0)
                         {
                             sum = tempValeurJourParProg + sum;
                             if (sum < 24)
@@ -1004,7 +1035,7 @@ namespace CTM_v1
                 }
             }
         }
-        
+
         void PlusieursProgPlageHorraireBoxCreation(Point derniereLocationPPMaj)
         {
             int dernierX2 = derniereLocationPPMaj2.X;
@@ -1020,7 +1051,7 @@ namespace CTM_v1
             {
                 v++;
                 TextBox numProgramme2 = new TextBox(); // Créez un nouveau contrôle TextBox pour chaque programme
-                numProgramme2.Text = "Programme " + v +" :";
+                numProgramme2.Text = "Programme " + v + " :";
                 numProgramme2.Location = new Point(constX, dernierY2);
                 numProgramme2.Size = new Size(largeur, hauteur);
                 numProgramme2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -1033,62 +1064,162 @@ namespace CTM_v1
 
                 v2 = 0;
 
-                    for (int j = 0; j < InstancePProgPlageHorraires.PPPH[i]; j++)
-                    {
-                        v2++;
-                        Console.WriteLine($"v2 : {v2}");
-                        TextBox horaireTextBox = new TextBox();
-                        horaireTextBox.Location = new Point(constX, dernierY2 + 50);
-                        horaireTextBox.Size = new Size(largeur, hauteur);
-                        horaireTextBox.Visible = true;
-                        panel1.Controls.Add(horaireTextBox);
-                        horaireTextBoxList.Add(horaireTextBox);
+                for (int j = 0; j < InstancePProgPlageHorraires.PPPH[i]; j++)
+                {
+                    v2++;
+                    TextBox horaireTextBox = new TextBox();
+                    horaireTextBox.Location = new Point(constX, dernierY2 + 50);
+                    horaireTextBox.Size = new Size(largeur, hauteur);
+                    horaireTextBox.Visible = true;
+                    panel1.Controls.Add(horaireTextBox);
+                    horaireTextBoxList.Add(horaireTextBox);
 
-                        TextBox indiqHoraireTextBox = new TextBox();
-                        indiqHoraireTextBox.Location = new Point(constX + 100, dernierY2 + 50);
-                        indiqHoraireTextBox.Size = new Size(largeur, hauteur);
-                        indiqHoraireTextBox.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-                        indiqHoraireTextBox.BackColor = SystemColors.InactiveCaption;
-                        indiqHoraireTextBox.BorderStyle = BorderStyle.None;
-                        indiqHoraireTextBox.Text = "<-Horaires " + v2;
-                        indiqHoraireTextBox.Enabled = false;
-                        indiqHoraireTextBox.ReadOnly = true;
-                        indiqHoraireTextBox.Visible = true;
-                        panel1.Controls.Add(indiqHoraireTextBox);
-                        indiqHoraireTextBoxList.Add(indiqHoraireTextBox);
 
-                        TextBox temperatureTextBox = new TextBox();
-                        temperatureTextBox.Location = new Point(constX + 373, dernierY2 + 50);
-                        temperatureTextBox.Size = new Size(largeur, hauteur);
-                        temperatureTextBox.Visible = true;
-                        panel1.Controls.Add(temperatureTextBox);
-                        temperatureTextBoxList.Add(temperatureTextBox);
+                    TextBox indiqHoraireTextBox = new TextBox();
+                    indiqHoraireTextBox.Location = new Point(constX + 100, dernierY2 + 50);
+                    indiqHoraireTextBox.Size = new Size(largeur, hauteur);
+                    indiqHoraireTextBox.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+                    indiqHoraireTextBox.BackColor = SystemColors.InactiveCaption;
+                    indiqHoraireTextBox.BorderStyle = BorderStyle.None;
+                    indiqHoraireTextBox.Text = "<-Horaires " + v2;
+                    indiqHoraireTextBox.Enabled = false;
+                    indiqHoraireTextBox.ReadOnly = true;
+                    indiqHoraireTextBox.Visible = true;
+                    panel1.Controls.Add(indiqHoraireTextBox);
+                    indiqHoraireTextBoxList.Add(indiqHoraireTextBox);
 
-                        TextBox indiqTemperatureTextBox = new TextBox();
-                        indiqTemperatureTextBox.Location = new Point(constX + 273, dernierY2 + 50);
-                        indiqTemperatureTextBox.Size = new Size(largeur, hauteur);
-                        indiqTemperatureTextBox.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-                        indiqTemperatureTextBox.BackColor = SystemColors.InactiveCaption;
-                        indiqTemperatureTextBox.BorderStyle = BorderStyle.None;
-                        indiqTemperatureTextBox.Text = "Temperature " + v2 + "->";
-                        indiqTemperatureTextBox.Enabled = false;
-                        indiqTemperatureTextBox.ReadOnly = true;
-                        indiqTemperatureTextBox.Visible = true;
-                        panel1.Controls.Add(indiqTemperatureTextBox);
-                        indiqTemperatureTextBoxList.Add(indiqTemperatureTextBox);
+                    TextBox temperatureTextBox = new TextBox();
+                    temperatureTextBox.Location = new Point(constX + 373, dernierY2 + 50);
+                    temperatureTextBox.Size = new Size(largeur, hauteur);
+                    temperatureTextBox.Visible = true;
+                    panel1.Controls.Add(temperatureTextBox);
+                    temperatureTextBoxList.Add(temperatureTextBox);
+
+                    TextBox indiqTemperatureTextBox = new TextBox();
+                    indiqTemperatureTextBox.Location = new Point(constX + 273, dernierY2 + 50);
+                    indiqTemperatureTextBox.Size = new Size(largeur, hauteur);
+                    indiqTemperatureTextBox.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+                    indiqTemperatureTextBox.BackColor = SystemColors.InactiveCaption;
+                    indiqTemperatureTextBox.BorderStyle = BorderStyle.None;
+                    indiqTemperatureTextBox.Text = "Temperature " + v2 + "->";
+                    indiqTemperatureTextBox.Enabled = false;
+                    indiqTemperatureTextBox.ReadOnly = true;
+                    indiqTemperatureTextBox.Visible = true;
+                    panel1.Controls.Add(indiqTemperatureTextBox);
+                    indiqTemperatureTextBoxList.Add(indiqTemperatureTextBox);
 
                     dernierY2 += 50;
                 }
 
                 dernierY2 += 50;
+    
             }
-              
-            dernierY2 += 50;
+
             derniereLocationPPMaj2 = new Point(dernierX2, dernierY2);
             PProgPH.Location = derniereLocationPPMaj2;
             PProgPH.Visible = true;
 
         }
+
+        public void PProgPH_Click(object sender, EventArgs e)
+        {
+            reponseCalcul = new TextBox();
+            reponseCalcul.Size = new Size(100, 25);
+
+            // Utilisez la variable nbProg pour déterminer combien d'instances de Programme créer.
+            int nombreInstances = nbProg;
+
+            for (int instanceIndex = 0; instanceIndex < nombreInstances; instanceIndex++)
+            {
+                Programme programme = new Programme();
+
+                if (instanceIndex == 0)
+                {
+                    foreach (TextBox horaireTextBox in horaireTextBoxList)
+                    {
+                        double horaire;
+                        if (double.TryParse(horaireTextBox.Text, out horaire))
+                        {
+                            programme.Horaires.Add(horaire);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erreur de conversion de l'heure.");
+                            return;
+                        }
+                    }
+
+                    foreach (TextBox temperatureTextBox in temperatureTextBoxList)
+                    {
+                        double temperature;
+                        if (double.TryParse(temperatureTextBox.Text, out temperature))
+                        {
+                            programme.Temperatures.Add(temperature);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erreur de conversion de la température.");
+                            return;
+                        }
+                    }
+                }
+                programmes.Add(programme);
+            }
+
+            double reponse = CalculerReponsePP();
+            reponseCalcul.Text = reponse.ToString();
+
+            int dernierX = derniereLocationPPMaj2.X;
+            int dernierY = derniereLocationPPMaj2.Y;
+
+            finalLocation = new Point(dernierX, dernierY + 50);
+
+            reponseCalcul.Location = finalLocation;
+            panel1.Controls.Add(reponseCalcul);
+        }
+
+
+        public double CalculerReponsePP()
+        {
+
+            double sommeMoyennes = 0.0;
+            double somme = 0;
+
+            Console.WriteLine($"Valeur de programmes.Count = {programmes.Count}");
+            foreach (Programme programme in programmes)
+            {
+                for (int i = 0; i < programme.Horaires.Count; i++)
+                {
+                    double horaire = programme.Horaires[i];
+                    double temperature = programme.Temperatures[i];
+
+                    Console.WriteLine($"programme.Horaires[{i}] = {horaire}, programme.Temperatures[{i}] = {temperature}");
+                }
+
+                if (programme.Horaires.Count != programme.Temperatures.Count)
+                {
+                    Console.WriteLine("Erreur : Les listes Horaires et Temperatures n'ont pas la même taille.");
+                    continue; // Passe à l'itération suivante si les listes sont de tailles différentes.
+                }
+
+                for (int j = 0; j < programme.Horaires.Count; j++)
+                {
+                    double horaire = programme.Horaires[j];
+                    double temperature = programme.Temperatures[j];
+
+                    somme += horaire * temperature;
+                }
+
+                double moyenneProgramme = somme / 24.0; //Créer une condition pour ne pas dépasser 24h en totalité en amont.
+                sommeMoyennes += moyenneProgramme;
+
+            }
+
+            double moyenneTotale = sommeMoyennes / nbProg;
+
+            return moyenneTotale;
+        }
+
 
     }
 }

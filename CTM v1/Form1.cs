@@ -469,7 +469,6 @@ namespace CTM_v1
                     else
                     {
                         MessageBox.Show("Il n'est pas possible d'avoir plus de plages horraires qu'il n'y à d'heure dans la journée.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //buttonReinitialiser_Click(sender, EventArgs.Empty);
                         return;
                     }
                 }
@@ -767,14 +766,12 @@ namespace CTM_v1
                     else if (tempValeurProgParSemaine == 7)
                     {
                         MessageBox.Show("Si vous avez 7 jours dans un programme veuillez cocher la case 1 programme en amont.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //buttonReinitialiser_Click(sender, EventArgs.Empty);
                         return;
                     }
 
                     else
                     {
                         MessageBox.Show("Il n'est pas possible d'avoir plus de programmes qu'il n'y a de jours par semaine.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //buttonReinitialiser_Click(sender, EventArgs.Empty);
                         return;
                     }
                 }
@@ -782,7 +779,6 @@ namespace CTM_v1
                 else
                 {
                     MessageBox.Show("Veuillez entrer un nombre valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //buttonReinitialiser_Click(sender, EventArgs.Empty);
                     return;
                 }
 
@@ -884,7 +880,6 @@ namespace CTM_v1
                                 if (sum > 7)
                                 {
                                     MessageBox.Show("Il n'est pas possible que la somme des jours par programme dépasse les 7 jours de la semaine.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    buttonReinitialiser_Click(sender, EventArgs.Empty);
                                     return;
                                 }
                                 else
@@ -898,14 +893,12 @@ namespace CTM_v1
                             else
                             {
                                 MessageBox.Show("Si vous avez 7 jours dans un programme veuillez cocher la case 1 programme en amont.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                buttonReinitialiser_Click(sender, EventArgs.Empty);
                                 return;
                             }
                         }
                         else
                         {
                             MessageBox.Show("Veuillez entrer un nombre valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            buttonReinitialiser_Click(sender, EventArgs.Empty);
                             return;
                         }
                     }
@@ -1035,7 +1028,6 @@ namespace CTM_v1
                             else
                             {
                                 MessageBox.Show("Il n'est pas possible d'avoir plus de 23 plages horaires", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                //buttonReinitialiser_Click(sender, EventArgs.Empty);
                                 return;
                             }
                         }

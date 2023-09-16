@@ -1035,7 +1035,7 @@ namespace CTM_v1
                             else
                             {
                                 MessageBox.Show("Il n'est pas possible d'avoir plus de 23 plages horaires", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                buttonReinitialiser_Click(sender, EventArgs.Empty);
+                                //buttonReinitialiser_Click(sender, EventArgs.Empty);
                                 return;
                             }
                         }

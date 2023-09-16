@@ -6,9 +6,8 @@ using System.Windows.Forms;
 using static CTM_v1.CTM;
 using System.Net;
 
-/* TODO : Crée la classe de calcul pour faire la moyenne.
- * Créer le bouton valider (confirmation des donnée entrés par l'utilisateur) pour renvoyer le résultat. (valable pour les 2 versions du programme). ++
- * créer la classe plage horraire pour plusieurs programmes.
+/* TODO : Créer boutton notice qui ouvre une fenetre avec la notice du programme.
+ *        ~ Créer un boutton Save afin d'enregistrer les valeurs entrées.
  */
 namespace CTM_v1
 {
@@ -117,6 +116,7 @@ namespace CTM_v1
             derniereLocation = new Point(0, 0);
             derniereLocationPP = new Point(0, 0);
             derniereLocationPPMaj = new Point(0, 0);
+            derniereLocationPPMaj2 = new Point(0, 0);
             finalLocation = new Point(0, 0);
 
             // Réinitialiser les cases
@@ -357,12 +357,12 @@ namespace CTM_v1
                 {
                     for (int i = 0; i < 1; i++)
                     {
-                        buttonReinitialiser_Click(sender, e); // A voir pour supprimer le reste ?
+                        buttonReinitialiser_Click(sender, e);
                     }
                 }
                 plusieursProgrammes.Checked = false;
             }
-            
+
             if (explication != null)
             {
                 explication.Visible = false;
@@ -463,20 +463,21 @@ namespace CTM_v1
                         valeurEntreeParUtilisateur = tempValeurPlageHorraire;
                         unProgPlageHorraires.ReadOnly = true;
 
-                        // Appel la méthode de la classe un prog
                         UnProgExplication();
                         UnProgBoxCreation(valeurEntreeParUtilisateur);
                     }
                     else
                     {
                         MessageBox.Show("Il n'est pas possible d'avoir plus de plages horraires qu'il n'y à d'heure dans la journée.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        buttonReinitialiser_Click(null, EventArgs.Empty);
+                        //buttonReinitialiser_Click(sender, EventArgs.Empty);
+                        return;
                     }
                 }
 
                 else
                 {
                     MessageBox.Show("Veuillez entrer un nombre valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
             }
@@ -617,14 +618,14 @@ namespace CTM_v1
 
         public class ValeurJourParProg
         {
-            public List<int> NBJPP { get; } = new List<int>(); // Dédié aux calculs.
+            public List<int> NBJPP { get; } = new List<int>(); // Liste les jours par programme.
         }
 
         public ValeurJourParProg InstanceValeurJourParProg { get; } = new ValeurJourParProg();
 
         public class PProgPlageHorraires
         {
-            public List<int> PPPH { get; } = new List<int>(); // Dédié à la création de Textbox.
+            public List<int> PPPH { get; } = new List<int>(); //Liste les plages horraires 
         }
 
         public PProgPlageHorraires InstancePProgPlageHorraires { get; } = new PProgPlageHorraires();
@@ -655,12 +656,12 @@ namespace CTM_v1
                 {
                     for (int i = 0; i < 1; i++)
                     {
-                        buttonReinitialiser_Click(sender, e); // A voir plus tard pour supprimer le reste
+                        buttonReinitialiser_Click(sender, e);
                     }
                 }
                 unProgramme.Checked = false;
             }
-            
+
             if (explicationPProg != null) // Plusieurs Prog
             {
                 explicationPProg.Visible = false;
@@ -759,7 +760,6 @@ namespace CTM_v1
                         valeurEntreeParUtilisateurPProg = tempValeurProgParSemaine;
                         nombreProgParSemaine.ReadOnly = true;
 
-                        // Appel la méthode de la classe 'plusieurs prog.'
                         PlusieursProgExplication();
                         PlusieursProgNbProgBoxCreation();
                     }
@@ -767,20 +767,23 @@ namespace CTM_v1
                     else if (tempValeurProgParSemaine == 7)
                     {
                         MessageBox.Show("Si vous avez 7 jours dans un programme veuillez cocher la case 1 programme en amont.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        buttonReinitialiser_Click(null, EventArgs.Empty);
+                        //buttonReinitialiser_Click(sender, EventArgs.Empty);
+                        return;
                     }
 
                     else
                     {
                         MessageBox.Show("Il n'est pas possible d'avoir plus de programmes qu'il n'y a de jours par semaine.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        buttonReinitialiser_Click(null, EventArgs.Empty);
+                        //buttonReinitialiser_Click(sender, EventArgs.Empty);
+                        return;
                     }
                 }
 
                 else
                 {
                     MessageBox.Show("Veuillez entrer un nombre valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    buttonReinitialiser_Click(null, EventArgs.Empty);
+                    //buttonReinitialiser_Click(sender, EventArgs.Empty);
+                    return;
                 }
 
             }
@@ -877,12 +880,12 @@ namespace CTM_v1
                         {
                             if (tempValeurJourParProg < 7)
                             {
-                                InstanceValeurJourParProg.NBJPP.Add(tempValeurJourParProg);
                                 sum = sum + int.Parse(valeurInscrit);
                                 if (sum > 7)
                                 {
                                     MessageBox.Show("Il n'est pas possible que la somme des jours par programme dépasse les 7 jours de la semaine.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    buttonReinitialiser_Click(null, EventArgs.Empty);
+                                    buttonReinitialiser_Click(sender, EventArgs.Empty);
+                                    return;
                                 }
                                 else
                                 {
@@ -890,23 +893,40 @@ namespace CTM_v1
                                     {
                                         textboxesnbprog.ReadOnly = true;
                                     }
-                                    // Appel les méthodes de la classe 'plusieurs prog box creation'
-                                    PProgIndicationPlageHorraires(derniereLocationPPMaj);
                                 }
                             }
                             else
                             {
                                 MessageBox.Show("Si vous avez 7 jours dans un programme veuillez cocher la case 1 programme en amont.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                buttonReinitialiser_Click(null, EventArgs.Empty);
+                                buttonReinitialiser_Click(sender, EventArgs.Empty);
+                                return;
                             }
                         }
                         else
                         {
                             MessageBox.Show("Veuillez entrer un nombre valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            buttonReinitialiser_Click(null, EventArgs.Empty);
+                            buttonReinitialiser_Click(sender, EventArgs.Empty);
+                            return;
                         }
                     }
                 }
+
+                foreach (TextBox textBox in textboxesnbprog)
+                {
+                    if (textBox.Text != "")
+                    {
+                        string valeurInscrit = textBox.Text;
+                        int tempValeurJourParProg;
+
+                        if (int.TryParse(valeurInscrit, out tempValeurJourParProg) && tempValeurJourParProg != 0)
+                        {
+                            InstanceValeurJourParProg.NBJPP.Add(tempValeurJourParProg);
+                        }
+                    }
+                }
+
+                PProgIndicationPlageHorraires(derniereLocationPPMaj);
+
             }
         }
 
@@ -919,7 +939,6 @@ namespace CTM_v1
             const int hauteur = 25;
             int v = 0;
 
-            // Supprimer les anciens contrôles de la liste
             foreach (TextBox textBox in numProgrammesList)
             {
                 panel1.Controls.Remove(textBox);
@@ -978,7 +997,7 @@ namespace CTM_v1
                 panel1.Controls.Add(pProgPlageHorraires);
                 nouveauxPProgPlageHorrairesList.Add(pProgPlageHorraires);
 
-                dernierY += 50; // Ajouter 1 pour l'espace entre les groupes de TextBox
+                dernierY += 50;
             }
 
             // Mettre à jour les listes avec les nouveaux contrôles
@@ -1016,21 +1035,20 @@ namespace CTM_v1
                             else
                             {
                                 MessageBox.Show("Il n'est pas possible d'avoir plus de 23 plages horaires", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                buttonReinitialiser_Click(null, EventArgs.Empty);
-                                return; // Sortez de la méthode pour éviter de continuer l'exécution
+                                buttonReinitialiser_Click(sender, EventArgs.Empty);
+                                return;
                             }
                         }
                         else
                         {
                             MessageBox.Show("Veuillez entrer un nombre valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                         }
                     }
                 }
 
-                // Une fois que toutes les valeurs du programme actuel ont été collectées, ajoutez-les à PPPH
                 if (InstancePProgPlageHorraires.PPPH.Count > 0)
                 {
-                    // Appel méthodes
                     PlusieursProgPlageHorraireBoxCreation(derniereLocationPPMaj);
                 }
             }
@@ -1041,7 +1059,7 @@ namespace CTM_v1
             int dernierX2 = derniereLocationPPMaj2.X;
             int dernierY2 = derniereLocationPPMaj2.Y;
             dernierY2 += 50;
-            int constX = dernierX2; // Utilisez constX pour conserver la position X constante
+            int constX = dernierX2;
             const int largeur = 100;
             const int hauteur = 25;
             int v = 0, v2 = 0;
@@ -1050,7 +1068,7 @@ namespace CTM_v1
             for (int i = 0; i < progCount; i++)
             {
                 v++;
-                TextBox numProgramme2 = new TextBox(); // Créez un nouveau contrôle TextBox pour chaque programme
+                TextBox numProgramme2 = new TextBox();
                 numProgramme2.Text = "Programme " + v + " :";
                 numProgramme2.Location = new Point(constX, dernierY2);
                 numProgramme2.Size = new Size(largeur, hauteur);
@@ -1112,114 +1130,133 @@ namespace CTM_v1
                 }
 
                 dernierY2 += 50;
-    
+
             }
 
             derniereLocationPPMaj2 = new Point(dernierX2, dernierY2);
             PProgPH.Location = derniereLocationPPMaj2;
             PProgPH.Visible = true;
+            panel1.Controls.Add(PProgPH);
 
         }
 
         public void PProgPH_Click(object sender, EventArgs e)
         {
+            finalLocation = new Point(PProgPH.Location.X, PProgPH.Location.Y + 50);
             reponseCalcul = new TextBox();
             reponseCalcul.Size = new Size(100, 25);
+            int index = 0;
 
-            // Utilisez la variable nbProg pour déterminer combien d'instances de Programme créer.
-            int nombreInstances = nbProg;
-
-            for (int instanceIndex = 0; instanceIndex < nombreInstances; instanceIndex++)
+            for (int i = 0; i < nbProg; i++)
             {
                 Programme programme = new Programme();
 
-                if (instanceIndex == 0)
+                int phpp = InstancePProgPlageHorraires.PPPH[i];
+                double sommeH = 0.0;
+
+                for (int j = 0; j < phpp; j++)
                 {
-                    foreach (TextBox horaireTextBox in horaireTextBoxList)
+                    /* Prend les valeurs horaires et temperatures en prennant dans l'ordre des listesdonnées/programmes. */
+                    TextBox horaireTextBox = horaireTextBoxList[index];
+                    TextBox temperatureTextBox = temperatureTextBoxList[index];
+
+                    double horaire;
+                    if (double.TryParse(horaireTextBox.Text, out horaire))
                     {
-                        double horaire;
-                        if (double.TryParse(horaireTextBox.Text, out horaire))
+                        if (horaire >= 0 && horaire <= 24)
                         {
                             programme.Horaires.Add(horaire);
+                            sommeH += horaire;
                         }
                         else
                         {
-                            MessageBox.Show("Erreur de conversion de l'heure.");
+                            MessageBox.Show("L'heure doit être comprise entre 0 et 24 heures.");
                             return;
                         }
                     }
 
-                    foreach (TextBox temperatureTextBox in temperatureTextBoxList)
+                    double temperature;
+                    if (double.TryParse(temperatureTextBox.Text, out temperature))
                     {
-                        double temperature;
-                        if (double.TryParse(temperatureTextBox.Text, out temperature))
-                        {
-                            programme.Temperatures.Add(temperature);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Erreur de conversion de la température.");
-                            return;
-                        }
+                        programme.Temperatures.Add(temperature);
                     }
+                    else
+                    {
+                        MessageBox.Show("Erreur de conversion de la température.");
+                        return;
+                    }
+
+                    index++;
                 }
+
+                if (Math.Abs(sommeH - 24.0) > 0.01) // Vérifie que la somme des plages horaires est proche de 24 heures (prise en compte des décimales)
+                {
+                    MessageBox.Show("La somme des plages horaires par programme doit être égale à 24 heures.");
+                    return;
+                }
+
                 programmes.Add(programme);
             }
 
-            double reponse = CalculerReponsePP();
+            double reponse = CalculerTemperatureMoyenneSemaine();
             reponseCalcul.Text = reponse.ToString();
-
-            int dernierX = derniereLocationPPMaj2.X;
-            int dernierY = derniereLocationPPMaj2.Y;
-
-            finalLocation = new Point(dernierX, dernierY + 50);
 
             reponseCalcul.Location = finalLocation;
             panel1.Controls.Add(reponseCalcul);
         }
 
 
-        public double CalculerReponsePP()
+        public double CalculerTemperatureMoyenneSemaine()
         {
+            double sommeMoyPJ = 0.0;
+            double[] moyPP = new double[nbProg];  // Obtenir une souche d'un jour par programme.
 
-            double sommeMoyennes = 0.0;
-            double somme = 0;
-
-            Console.WriteLine($"Valeur de programmes.Count = {programmes.Count}");
-            foreach (Programme programme in programmes)
+            for (int k = 0; k < nbProg; k++)
             {
-                for (int i = 0; i < programme.Horaires.Count; i++)
-                {
-                    double horaire = programme.Horaires[i];
-                    double temperature = programme.Temperatures[i];
-
-                    Console.WriteLine($"programme.Horaires[{i}] = {horaire}, programme.Temperatures[{i}] = {temperature}");
-                }
-
-                if (programme.Horaires.Count != programme.Temperatures.Count)
-                {
-                    Console.WriteLine("Erreur : Les listes Horaires et Temperatures n'ont pas la même taille.");
-                    continue; // Passe à l'itération suivante si les listes sont de tailles différentes.
-                }
-
-                for (int j = 0; j < programme.Horaires.Count; j++)
-                {
-                    double horaire = programme.Horaires[j];
-                    double temperature = programme.Temperatures[j];
-
-                    somme += horaire * temperature;
-                }
-
-                double moyenneProgramme = somme / 24.0; //Créer une condition pour ne pas dépasser 24h en totalité en amont.
-                sommeMoyennes += moyenneProgramme;
-
+                moyPP[k] = 0.0;
             }
 
-            double moyenneTotale = sommeMoyennes / nbProg;
+            if (InstanceValeurJourParProg.NBJPP.Count >= nbProg)
+            {
+                for (int i = 0; i < nbProg; i++)
+                {
+                    int nombreJoursProgramme = InstanceValeurJourParProg.NBJPP[i];
+                    double sommeHoraireTemp = 0.0;
+                    // Contrôle des valeurs par console
+                    Console.WriteLine($"Programme {i + 1}, Nombre de Jours : {nombreJoursProgramme}");
 
-            return moyenneTotale;
+                    for (int j = 0; j < programmes[i].Horaires.Count; j++)
+                    {
+                        double horaire = programmes[i].Horaires[j];
+                        double temperature = programmes[i].Temperatures[j];
+
+                        sommeHoraireTemp += (temperature * horaire);
+
+                        Console.WriteLine($"   Température : {temperature}");
+                        Console.WriteLine($"   Horaire : {horaire}");
+                        Console.WriteLine($"   Somme Horaire Temp : {sommeHoraireTemp}");
+                        Console.WriteLine();
+                    }
+
+                    moyPP[i] = sommeHoraireTemp / 24;
+                    sommeMoyPJ = (moyPP[i] * nombreJoursProgramme) + sommeMoyPJ;
+
+                    Console.WriteLine($"   Moyenne Additionnée Total par Programme : {moyPP[i]}");
+                    Console.WriteLine($"   Moyenne par Programme : {sommeMoyPJ}");
+                    Console.WriteLine();
+
+                }
+            }
+            else
+            {
+                Console.WriteLine("Il n'y a pas suffisamment de valeurs dans NBJPP pour chaque programme.");
+            }
+
+            double moyenneFinal = sommeMoyPJ / 7;
+
+            Console.WriteLine($"Température Moyenne de la Semaine : {moyenneFinal}");
+
+            return moyenneFinal;
         }
-
-
     }
 }

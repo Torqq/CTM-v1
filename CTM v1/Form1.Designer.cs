@@ -62,7 +62,7 @@ namespace CTM_v1
             objectifDuProgramme.ReadOnly = true;
             objectifDuProgramme.Size = new Size(777, 34);
             objectifDuProgramme.TabIndex = 0;
-            objectifDuProgramme.Text = "Bonjour, ce programme est un calculateur de température moyenne permettant de vous donner la moyenne mensuelle\r\nen Celsius.";
+            objectifDuProgramme.Text = "Bonjour, ce programme est un calculateur de température moyenne permettant de vous donner la moyenne hebdomadaire\r\nen Celsius.";
             objectifDuProgramme.TextChanged += objectifDuProgramme_TextChanged;
             // 
             // titre
@@ -269,7 +269,6 @@ namespace CTM_v1
             panel1.AutoScroll = true;
             panel1.AutoSize = true;
             panel1.Controls.Add(PProgGo);
-            panel1.Controls.Add(PProgPH);
             panel1.Controls.Add(plusieursProgValiderPlageHorraires);
             panel1.Controls.Add(plusieursProgValiderNbJourParProg);
             panel1.Controls.Add(plusieursProgValiderNbProg);
@@ -308,11 +307,6 @@ namespace CTM_v1
             ResumeLayout(false);
             PerformLayout();
         }
-
-        /*private void PProgPH_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }*/
 
         #endregion
 

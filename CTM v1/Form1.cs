@@ -6,15 +6,15 @@ using System.Windows.Forms;
 using static CTM_v1.CTM;
 using System.Net;
 
-/* TODO : Créer boutton notice qui ouvre une fenetre avec la notice du programme.
- *        ~ Créer un boutton Save afin d'enregistrer les valeurs entrées.
+/* TODO : CrÃ©er boutton notice qui ouvre une fenetre avec la notice du programme.
+ *        ~ CrÃ©er un boutton Save afin d'enregistrer les valeurs entrÃ©es.
  */
 namespace CTM_v1
 {
     public partial class CTM : Form
     {
         /// <summary>
-        /// Ici le code qui permet à l'utilisateur de donner les données au programme + Creation des TextBoxes + Calcul.
+        /// Ici le code qui permet Ã  l'utilisateur de donner les donnÃ©es au programme + Creation des TextBoxes + Calcul.
         /// </summary>
         int nbProg = 0;
         public int valeurEntreeParUtilisateur { get; set; }
@@ -65,7 +65,7 @@ namespace CTM_v1
             titre.ReadOnly = true;
             objectifDuProgramme.ReadOnly = true;
             explicationFonctionnel1.ReadOnly = true;
-            // Aucune visibilité avant le choix de la personne pour moins d'encombrement visuel.
+            // Aucune visibilitÃ© avant le choix de la personne pour moins d'encombrement visuel.
 
             // Un programme
             unProgrammeBriefing.Visible = unProgramme.Checked;
@@ -112,14 +112,14 @@ namespace CTM_v1
         {
             //Application.Restart();
 
-            // Réinitialiser les Axes X ,Y
+            // RÃ©initialiser les Axes X ,Y
             derniereLocation = new Point(0, 0);
             derniereLocationPP = new Point(0, 0);
             derniereLocationPPMaj = new Point(0, 0);
             derniereLocationPPMaj2 = new Point(0, 0);
             finalLocation = new Point(0, 0);
 
-            // Réinitialiser les cases
+            // RÃ©initialiser les cases
             unProgramme.Checked = false;
             unProgPlageHorraires.Text = "";
             unProgPlageHorraires.ReadOnly = false;
@@ -128,16 +128,16 @@ namespace CTM_v1
             nombreProgParSemaine.Text = "";
             nombreProgParSemaine.ReadOnly = false;
 
-            // Réinitialiser les valeurs des variables entrées par l'utilisateur
+            // RÃ©initialiser les valeurs des variables entrÃ©es par l'utilisateur
             valeurEntreeParUtilisateur = 0;
             valeurEntreeParUtilisateurPProg = 0;
 
-            //Réinitialiser les instances
+            //RÃ©initialiser les instances
             InstancePProgPlageHorraires.PPPH.Clear();
             InstanceValeurJourParProg.NBJPP.Clear();
 
 
-            // Réinitialiser les contrôles
+            // RÃ©initialiser les contrÃ´les
             if (explication != null)
             {
                 explication.Visible = false;
@@ -300,7 +300,7 @@ namespace CTM_v1
             }
 
 
-            // Réinitialiser les Collections
+            // RÃ©initialiser les Collections
             horaireTextBoxList.Clear();
             indiqHoraireTextBoxList.Clear();
             temperatureTextBoxList.Clear();
@@ -316,12 +316,12 @@ namespace CTM_v1
 
         private void VScrollBar_Scroll(object sender, ScrollEventArgs e)
         {
-            // Met à jour la position et la taille de la barre de défilement
+            // Met Ã  jour la position et la taille de la barre de dÃ©filement
             vScrollBar.Location = new System.Drawing.Point(panel1.Width - vScrollBar.Width, 0);
             vScrollBar.Height = panel1.Height;
-            // Met à jour la zone de défilement du panneau en fonction de la taille du contenu
+            // Met Ã  jour la zone de dÃ©filement du panneau en fonction de la taille du contenu
             panel1.AutoScrollMinSize = new System.Drawing.Size(0, panel1.Controls.Count * 25);
-            // Met à jour la position verticale du panneau en fonction de la valeur de défilement de la barre
+            // Met Ã  jour la position verticale du panneau en fonction de la valeur de dÃ©filement de la barre
             panel1.VerticalScroll.Value = e.NewValue;
         }
 
@@ -468,7 +468,7 @@ namespace CTM_v1
                     }
                     else
                     {
-                        MessageBox.Show("Il n'est pas possible d'avoir plus de plages horraires qu'il n'y à d'heure dans la journée.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Il n'est pas possible d'avoir plus de plages horraires qu'il n'y Ã  d'heure dans la journÃ©e.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         //buttonReinitialiser_Click(sender, EventArgs.Empty);
                         return;
                     }
@@ -503,7 +503,7 @@ namespace CTM_v1
             explication.BackColor = Color.CornflowerBlue;
             explication.Multiline = true;
             explication.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            explication.Text = "Veuillez remplir les données dans les cases indiqués ci-dessous dans l'ordre indiqué.";
+            explication.Text = "Veuillez remplir les donnÃ©es dans les cases indiquÃ©s ci-dessous dans l'ordre indiquÃ©.";
             panel1.Controls.Add(explication);
         }
 
@@ -602,11 +602,11 @@ namespace CTM_v1
             reponseCalcul = new TextBox();
             reponseCalcul.Size = new Size(100, 25);
 
-            // Calculer la réponse en fonction des valeurs dans textboxesHorraire et textboxesTemperature
+            // Calculer la rÃ©ponse en fonction des valeurs dans textboxesHorraire et textboxesTemperature
             double reponse = CalculerReponse();
             reponseCalcul.Text = reponse.ToString();
 
-            // Positionner la boîte sous le bouton unProgGo
+            // Positionner la boÃ®te sous le bouton unProgGo
             Point position = new Point(unProgGo.Location.X, unProgGo.Location.Y + unProgGo.Height + 25);
             reponseCalcul.Location = position;
             panel1.Controls.Add(reponseCalcul);
@@ -883,7 +883,7 @@ namespace CTM_v1
                                 sum = sum + int.Parse(valeurInscrit);
                                 if (sum > 7)
                                 {
-                                    MessageBox.Show("Il n'est pas possible que la somme des jours par programme dépasse les 7 jours de la semaine.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("Il n'est pas possible que la somme des jours par programme dÃ©passe les 7 jours de la semaine.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     buttonReinitialiser_Click(sender, EventArgs.Empty);
                                     return;
                                 }
@@ -957,7 +957,7 @@ namespace CTM_v1
             }
             pProgPlageHorrairesList.Clear();
 
-            // Créer des listes temporaires pour les nouveaux contrôles
+            // CrÃ©er des listes temporaires pour les nouveaux contrÃ´les
             List<TextBox> nouveauxNumProgrammesList = new List<TextBox>();
             List<TextBox> nouveauxTextboxesHorraire2List = new List<TextBox>();
             List<TextBox> nouveauxPProgPlageHorrairesList = new List<TextBox>();
@@ -1000,7 +1000,7 @@ namespace CTM_v1
                 dernierY += 50;
             }
 
-            // Mettre à jour les listes avec les nouveaux contrôles
+            // Mettre Ã  jour les listes avec les nouveaux contrÃ´les
             numProgrammesList = nouveauxNumProgrammesList;
             textboxesHorraire2List = nouveauxTextboxesHorraire2List;
             pProgPlageHorrairesList = nouveauxPProgPlageHorrairesList;
@@ -1156,7 +1156,7 @@ namespace CTM_v1
 
                 for (int j = 0; j < phpp; j++)
                 {
-                    /* Prend les valeurs horaires et temperatures en prennant dans l'ordre des listesdonnées/programmes. */
+                    /* Prend les valeurs horaires et temperatures en prennant dans l'ordre des listesdonnÃ©es/programmes. */
                     TextBox horaireTextBox = horaireTextBoxList[index];
                     TextBox temperatureTextBox = temperatureTextBoxList[index];
 
@@ -1170,7 +1170,7 @@ namespace CTM_v1
                         }
                         else
                         {
-                            MessageBox.Show("L'heure doit être comprise entre 0 et 24 heures.");
+                            MessageBox.Show("L'heure doit Ãªtre comprise entre 0 et 24 heures.");
                             return;
                         }
                     }
@@ -1182,16 +1182,16 @@ namespace CTM_v1
                     }
                     else
                     {
-                        MessageBox.Show("Erreur de conversion de la température.");
+                        MessageBox.Show("Erreur de conversion de la tempÃ©rature.");
                         return;
                     }
 
                     index++;
                 }
 
-                if (Math.Abs(sommeH - 24.0) > 0.01) // Vérifie que la somme des plages horaires est proche de 24 heures (prise en compte des décimales)
+                if (Math.Abs(sommeH - 24.0) > 0.01) // VÃ©rifie que la somme des plages horaires est proche de 24 heures (prise en compte des dÃ©cimales)
                 {
-                    MessageBox.Show("La somme des plages horaires par programme doit être égale à 24 heures.");
+                    MessageBox.Show("La somme des plages horaires par programme doit Ãªtre Ã©gale Ã  24 heures.");
                     return;
                 }
 
@@ -1222,7 +1222,7 @@ namespace CTM_v1
                 {
                     int nombreJoursProgramme = InstanceValeurJourParProg.NBJPP[i];
                     double sommeHoraireTemp = 0.0;
-                    // Contrôle des valeurs par console
+                    // ContrÃ´le des valeurs par console
                     Console.WriteLine($"Programme {i + 1}, Nombre de Jours : {nombreJoursProgramme}");
 
                     for (int j = 0; j < programmes[i].Horaires.Count; j++)
@@ -1232,7 +1232,7 @@ namespace CTM_v1
 
                         sommeHoraireTemp += (temperature * horaire);
 
-                        Console.WriteLine($"   Température : {temperature}");
+                        Console.WriteLine($"   TempÃ©rature : {temperature}");
                         Console.WriteLine($"   Horaire : {horaire}");
                         Console.WriteLine($"   Somme Horaire Temp : {sommeHoraireTemp}");
                         Console.WriteLine();
@@ -1241,7 +1241,7 @@ namespace CTM_v1
                     moyPP[i] = sommeHoraireTemp / 24;
                     sommeMoyPJ = (moyPP[i] * nombreJoursProgramme) + sommeMoyPJ;
 
-                    Console.WriteLine($"   Moyenne Additionnée Total par Programme : {moyPP[i]}");
+                    Console.WriteLine($"   Moyenne AdditionnÃ©e Total par Programme : {moyPP[i]}");
                     Console.WriteLine($"   Moyenne par Programme : {sommeMoyPJ}");
                     Console.WriteLine();
 
@@ -1254,7 +1254,7 @@ namespace CTM_v1
 
             double moyenneFinal = sommeMoyPJ / 7;
 
-            Console.WriteLine($"Température Moyenne de la Semaine : {moyenneFinal}");
+            Console.WriteLine($"TempÃ©rature Moyenne de la Semaine : {moyenneFinal}");
 
             return moyenneFinal;
         }

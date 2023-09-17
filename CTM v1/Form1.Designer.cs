@@ -51,9 +51,9 @@ namespace CTM_v1
             plusieursProgValiderNbJourParProg = new Button();
             plusieursProgValiderPlageHorraires = new Button();
             PProgPH = new Button();
-            PProgGo = new Button();
             vScrollBar = new VScrollBar();
             panel1 = new Panel();
+            readme = new Button();
             pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -254,16 +254,6 @@ namespace CTM_v1
             PProgPH.Visible = false;
             PProgPH.Click += PProgPH_Click;
             // 
-            // PProgGo
-            // 
-            PProgGo.Location = new Point(0, 0);
-            PProgGo.Name = "PProgGo";
-            PProgGo.Size = new Size(75, 23);
-            PProgGo.TabIndex = 17;
-            PProgGo.Text = "Calculer";
-            PProgGo.UseVisualStyleBackColor = true;
-            PProgGo.Visible = false;
-            // 
             // vScrollBar
             // 
             vScrollBar.Dock = DockStyle.Right;
@@ -277,8 +267,8 @@ namespace CTM_v1
             panel1.AllowDrop = true;
             panel1.AutoScroll = true;
             panel1.AutoSize = true;
+            panel1.Controls.Add(readme);
             panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(PProgGo);
             panel1.Controls.Add(plusieursProgValiderPlageHorraires);
             panel1.Controls.Add(plusieursProgValiderNbJourParProg);
             panel1.Controls.Add(plusieursProgValiderNbProg);
@@ -301,15 +291,25 @@ namespace CTM_v1
             panel1.TabIndex = 14;
             panel1.Scroll += VScrollBar_Scroll;
             // 
+            // readme
+            // 
+            readme.Location = new Point(1106, 12);
+            readme.Name = "readme";
+            readme.Size = new Size(75, 23);
+            readme.TabIndex = 19;
+            readme.Text = "Lisez-moi";
+            readme.UseVisualStyleBackColor = true;
+            readme.Click += readme_Click;
+            // 
             // pictureBox1
             // 
-            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(871, 12);
+            pictureBox1.Location = new Point(870, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(200, 193);
+            pictureBox1.Size = new Size(196, 203);
             pictureBox1.TabIndex = 18;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // CTM
             // 
@@ -347,9 +347,9 @@ namespace CTM_v1
         private Button plusieursProgValiderNbJourParProg;
         private Button plusieursProgValiderPlageHorraires;
         private Button PProgPH;
-        private Button PProgGo;
         private Panel panel1;
         private VScrollBar vScrollBar;
         private PictureBox pictureBox1;
+        private Button readme;
     }
 }

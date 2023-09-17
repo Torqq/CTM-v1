@@ -4,7 +4,6 @@
  * ou sur le site web de l'Apache Software Foundation : http://www.apache.org/licenses/LICENSE-2.0
  */
 
-
 using System;
 using System.Diagnostics.Eventing.Reader;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
@@ -83,6 +82,78 @@ namespace CTM_v1
             plusieursProgrammesBriefing.Visible = plusieursProgrammes.Checked;
             nombreProgParSemaine.Visible = plusieursProgrammes.Checked;
             plusieursProgValiderNbProg.Visible = plusieursProgrammes.Checked;
+        }
+        private void readme_Click(object sender, EventArgs e)
+        {
+            Form readmeForm = new Form();
+            readmeForm.Text = "Lisez-moi";
+            readmeForm.Width = 800; 
+            readmeForm.Height = 400; 
+
+            TextBox textBox = new TextBox();
+            textBox.Multiline = true;
+            textBox.Dock = DockStyle.Fill; 
+            textBox.ScrollBars = ScrollBars.Vertical;
+            textBox.SelectionStart = 0;
+            textBox.SelectionLength = 0;
+
+            textBox.Text = @"
+# Licence
+
+* Copyright [2023] [Torqq]
+*
+* Sous licence Apache, Version 2.0 (la ""Licence"");
+* vous ne pouvez pas utiliser ce fichier sauf conformément à la Licence.
+* Vous pouvez obtenir une copie de la Licence sur
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+* Sauf si requis par la loi applicable ou convenu par écrit, le logiciel
+* distribué sous la Licence est distribué ""TEL QUEL"", SANS GARANTIES OU
+* CONDITIONS D'AUCUNE SORTE, explicites ou implicites.
+* Consultez la Licence pour les autorisations spécifiques régissant la langue
+* et les autorisations de limitation en vertu de la Licence.
+
+# Calculateur de température moyenne
+
+Un simple calculateur pour faciliter le réglage des thermostats domestiques et/ou professionnels pour plus d'efficacité énergétique.
+
+L'objectif de ce programme est d'aider la population à gérer plus efficacement l'efficacité énergétique et de réaliser des économies.
+
+## Description
+
+Programme facilitant le réglage des paramètres d'un thermostat qui gère le chauffage et/ou la climatisation. Vous pourrez simuler des plages horaires,
+le programme vous donnera la moyenne de chauffage/refroidissement à la semaine et au mois.
+
+Fonctions :
+
+- Un Programme : Utile si vous utilisez un seul programme qui englobe toute la semaine.
+
+- Plusieurs programmes : Utile si vous utilisez plusieurs programmes avec des plages horaires différentes dans la semaine. Exemple, un programme de 5 jours du Lundi au Vendredi, un programme de 2 jours le Samedi et Dimanche.
+
+Fonctions à venir (v1.1) :
+
+- Un bouton d'exportation en fichier .txt pour que l'utilisateur puisse éventuellement imprimer les données.
+
+## Autheur
+
+* **Torqq** - [https://github.com/Torqq]
+
+### Prérequis
+
+Testé sur Windows 11.
+";
+
+            readmeForm.Controls.Add(textBox);
+
+            readme.Controls.RemoveByKey("VScrollBar");
+
+            readmeForm.ShowDialog();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void unProgramme_Validated(object sender, EventArgs e)
@@ -743,11 +814,6 @@ namespace CTM_v1
             if (PProgPH != null)
             {
                 PProgPH.Visible = false;
-            }
-
-            if (PProgGo != null)
-            {
-                PProgGo.Visible = false;
             }
         }
 

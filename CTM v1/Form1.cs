@@ -1,3 +1,10 @@
+/*
+ * Ce code est distribué sous les termes de la Licence Apache 2.0.
+ * Vous pouvez obtenir une copie de la licence dans le fichier LICENSE à la racine du projet
+ * ou sur le site web de l'Apache Software Foundation : http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+
 using System;
 using System.Diagnostics.Eventing.Reader;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;

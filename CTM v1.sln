@@ -5,11 +5,6 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CTM v1", "CTM v1\CTM v1.csproj", "{5EEDC34F-3B84-422A-B811-7685B5445C85}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{C1414C93-2ED9-4CB5-82AB-1F739B62D885}"
-	ProjectSection(SolutionItems) = preProject
-		core.cs = core.cs
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

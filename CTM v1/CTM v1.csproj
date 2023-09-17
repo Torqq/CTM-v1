@@ -7,6 +7,41 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>1ea10760f7fc44699fb2cead4b1ffa5f.ico</ApplicationIcon>
+    <BaseOutputPath>C:\Users\bilal\OneDrive\Codage\CTM v1</BaseOutputPath>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Calculateur de temperature moyenne</Title>
+    <Authors>$(AssemblyName) BA</Authors>
+    <Company>$(Authors) Torqq BC</Company>
+    <PackageIcon>1ea10760f7fc44699fb2cead4b1ffa5f.png</PackageIcon>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="1ea10760f7fc44699fb2cead4b1ffa5f.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\1ea10760f7fc44699fb2cead4b1ffa5f.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="LICENSE" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
 
 </Project>

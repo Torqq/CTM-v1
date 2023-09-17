@@ -1,3 +1,9 @@
+/*
+ * Ce code est distribué sous les termes de la Licence Apache 2.0.
+ * Vous pouvez obtenir une copie de la licence dans le fichier LICENSE à la racine du projet
+ * ou sur le site web de l'Apache Software Foundation : http://www.apache.org/licenses/LICENSE-2.0
+ */
+
 namespace CTM_v1
 {
     partial class CTM
@@ -28,6 +34,7 @@ namespace CTM_v1
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CTM));
             objectifDuProgramme = new TextBox();
             titre = new RichTextBox();
             unProgramme = new CheckBox();
@@ -47,7 +54,9 @@ namespace CTM_v1
             PProgGo = new Button();
             vScrollBar = new VScrollBar();
             panel1 = new Panel();
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // objectifDuProgramme
@@ -268,6 +277,7 @@ namespace CTM_v1
             panel1.AllowDrop = true;
             panel1.AutoScroll = true;
             panel1.AutoSize = true;
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(PProgGo);
             panel1.Controls.Add(plusieursProgValiderPlageHorraires);
             panel1.Controls.Add(plusieursProgValiderNbJourParProg);
@@ -291,6 +301,16 @@ namespace CTM_v1
             panel1.TabIndex = 14;
             panel1.Scroll += VScrollBar_Scroll;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(871, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(200, 193);
+            pictureBox1.TabIndex = 18;
+            pictureBox1.TabStop = false;
+            // 
             // CTM
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -304,6 +324,7 @@ namespace CTM_v1
             Text = "CTM - Calculateur de température moyenne";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -329,5 +350,6 @@ namespace CTM_v1
         private Button PProgGo;
         private Panel panel1;
         private VScrollBar vScrollBar;
+        private PictureBox pictureBox1;
     }
 }

@@ -1,6 +1,5 @@
 # Licence
 
-/*
  * Copyright [2023] [Torq]
  *
  * Sous licence Apache, Version 2.0 (la "Licence");

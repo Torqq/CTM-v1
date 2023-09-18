@@ -1,7 +1,7 @@
 # Licence
 
 /*
- * Copyright [2023] [Torqq]
+ * Copyright [2023] [Torq]
  *
  * Sous licence Apache, Version 2.0 (la "Licence");
  * vous ne pouvez pas utiliser ce fichier sauf conformément à la Licence.
@@ -41,13 +41,8 @@ Fonctions à venir (v1.1) :
 
 ## Autheur
 
-* **Torqq** - [https://github.com/Torqq]
+* **Torq** - [https://github.com/Torqq]
 
-
-## Débuter
-
-Ces instructions vous fourniront une copie du projet opérationnel sur votre machine locale à des fins de développement et de test.
-____________________________________________________________________________________________________________________________________________________
 
 ### Prérequis
 

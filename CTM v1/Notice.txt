@@ -1,0 +1,46 @@
+# NOTICE D'UTILISATION
+
+Vous serez guidé tout au long du programme avec des indicateurs. Pour plus d'informations d'utilisation, lisez ci-dessous.
+			|								|
+			V								V
+
+ATTENTION : Si vous cochez une case différente entre Un programme et Plusieurs programmes, vos données inscrites seront effacées.
+
+Les plages horaires permettent la liaison entre la température et le temps alloué à celle-ci dans la journée.
+
+Plage horaire <----> Température
+
+Exemple :  2h <----> 20°C
+          22h <----> 18°C
+
+
+## 1 PROGRAMME POUR TOUTE UNE SEMAINE :
+
+Exemple : 2 plages horaires -> 12 heures, 20°C | 12 heures, 22°C.
+
+Étape 1 : Déterminer le nombre de plages horaires quotidiennes.
+
+Étape 2 : Indiquez le temps de chauffe/refroidissement et les températures que vous souhaitez paramétrer.
+
+Étape 3 : Vous trouverez votre moyenne de température hebdomadaire.
+
+
+## PLUSIEURS PROGRAMMES DANS LA SEMAINE :
+
+Exemple : 2 programmes -> 5 jours (Lundi au Vendredi) | 2 jours (Samedi, Dimanche).
+
+          2 plages horaires pour le programme 1 -> 12 heures, 20°C | 12 heures, 22°C.
+          3 plages horaires pour le programme 2 -> 8 heures, 20°C | 8 heures, 18°C | 8 heures, 16°C.
+
+Étape 1 : Indiquez le nombre de programmes qui auront des plages horaires et températures différentes.
+          
+Étape 2 : Indiquez le nombre de jours que le programme englobe. (Exemple : 5 et 2).
+
+Étape 3 : Déterminez le nombre de plages horaires quotidiennes. (Exemple : 2 et 3).
+
+Étape 4 : Indiquez le temps de chauffe/refroidissement et les températures que vous souhaitez paramétrer en suivant les indications.
+
+Étape 5 : Vous trouverez votre moyenne de température hebdomadaire. 
+
+
+### contact : info@torqprotocol.io

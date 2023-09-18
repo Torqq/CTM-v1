@@ -55,6 +55,8 @@ namespace CTM_v1
             panel1 = new Panel();
             readme = new Button();
             pictureBox1 = new PictureBox();
+            notice = new Button();
+            colorDialog1 = new ColorDialog();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -267,6 +269,7 @@ namespace CTM_v1
             panel1.AllowDrop = true;
             panel1.AutoScroll = true;
             panel1.AutoSize = true;
+            panel1.Controls.Add(notice);
             panel1.Controls.Add(readme);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(plusieursProgValiderPlageHorraires);
@@ -295,7 +298,7 @@ namespace CTM_v1
             // 
             readme.Location = new Point(1106, 12);
             readme.Name = "readme";
-            readme.Size = new Size(75, 23);
+            readme.Size = new Size(100, 29);
             readme.TabIndex = 19;
             readme.Text = "Lisez-moi";
             readme.UseVisualStyleBackColor = true;
@@ -310,6 +313,16 @@ namespace CTM_v1
             pictureBox1.TabIndex = 18;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
+            // 
+            // notice
+            // 
+            notice.Location = new Point(1106, 47);
+            notice.Name = "button1";
+            notice.Size = new Size(100, 29);
+            notice.TabIndex = 20;
+            notice.Text = "Notice";
+            notice.UseVisualStyleBackColor = true;
+            notice.Click += notice_Click;
             // 
             // CTM
             // 
@@ -351,5 +364,7 @@ namespace CTM_v1
         private VScrollBar vScrollBar;
         private PictureBox pictureBox1;
         private Button readme;
+        private Button notice;
+        private ColorDialog colorDialog1;
     }
 }

@@ -87,27 +87,24 @@ namespace CTM_v1
         {
             Form readmeForm = new Form();
             readmeForm.Text = "Lisez-moi";
-            readmeForm.Width = 800; 
-            readmeForm.Height = 400; 
+            readmeForm.Width = 800;
+            readmeForm.Height = 800;
 
             TextBox textBox = new TextBox();
             textBox.Multiline = true;
-            textBox.Dock = DockStyle.Fill; 
+            textBox.Dock = DockStyle.Fill;
             textBox.ScrollBars = ScrollBars.Vertical;
             textBox.SelectionStart = 0;
             textBox.SelectionLength = 0;
+            textBox.ReadOnly = true;
 
-            textBox.Text = @"
-# Licence
+            textBox.Text = @"# Licence
 
-* Copyright [2023] [Torqq]
+* Copyright [2023] [Torq]
 *
 * Sous licence Apache, Version 2.0 (la ""Licence"");
 * vous ne pouvez pas utiliser ce fichier sauf conformément à la Licence.
-* Vous pouvez obtenir une copie de la Licence sur
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
+* Vous pouvez obtenir une copie de la Licence sur http://www.apache.org/licenses/LICENSE-2.0
 * Sauf si requis par la loi applicable ou convenu par écrit, le logiciel
 * distribué sous la Licence est distribué ""TEL QUEL"", SANS GARANTIES OU
 * CONDITIONS D'AUCUNE SORTE, explicites ou implicites.
@@ -122,8 +119,7 @@ L'objectif de ce programme est d'aider la population à gérer plus efficacement
 
 ## Description
 
-Programme facilitant le réglage des paramètres d'un thermostat qui gère le chauffage et/ou la climatisation. Vous pourrez simuler des plages horaires,
-le programme vous donnera la moyenne de chauffage/refroidissement à la semaine et au mois.
+Programme facilitant le réglage des paramètres d'un thermostat qui gère le chauffage et/ou la climatisation. Vous pourrez simuler des plages horaires, le programme vous donnera la moyenne de chauffage/refroidissement à la semaine et au mois.
 
 Fonctions :
 
@@ -137,7 +133,7 @@ Fonctions à venir (v1.1) :
 
 ## Autheur
 
-* **Torqq** - [https://github.com/Torqq]
+**Torq** - [https://github.com/Torqq]
 
 ### Prérequis
 
@@ -145,6 +141,77 @@ Testé sur Windows 11.
 ";
 
             readmeForm.Controls.Add(textBox);
+
+            textBox.Select(0, 0);
+
+            readme.Controls.RemoveByKey("VScrollBar");
+
+            readmeForm.ShowDialog();
+        }
+
+        private void notice_Click(object sender, EventArgs e)
+        {
+            Form readmeForm = new Form();
+            readmeForm.Text = "Lisez-moi";
+            readmeForm.Width = 800;
+            readmeForm.Height = 800;
+
+            TextBox textBox = new TextBox();
+            textBox.Multiline = true;
+            textBox.Dock = DockStyle.Fill;
+            textBox.ScrollBars = ScrollBars.Vertical;
+            textBox.SelectionStart = 0;
+            textBox.SelectionLength = 0;
+            textBox.ReadOnly = true;
+
+            textBox.Text = @"# NOTICE D'UTILISATION
+
+Vous serez guidé tout au long du programme avec des indicateurs. Pour plus d'informations d'utilisation, lisez ci-dessous.
+
+
+ATTENTION : Si vous cochez une case différente entre Un programme et Plusieurs programmes, vos données inscrites seront effacées.
+
+Les plages horaires permettent la liaison entre la température et le temps alloué à celle-ci dans la journée.
+
+Plage horaire <----> Température
+
+Exemple :  2h <----> 20°C
+                 22h <----> 18°C
+
+
+## 1 PROGRAMME POUR TOUTE UNE SEMAINE :
+
+Exemple : 2 plages horaires -> 12 heures, 20°C | 12 heures, 22°C.
+
+Étape 1 : Déterminer le nombre de plages horaires quotidiennes.
+
+Étape 2 : Indiquez le temps de chauffe/refroidissement et les températures que vous souhaitez paramétrer.
+
+Étape 3 : Vous trouverez votre moyenne de température hebdomadaire.
+
+
+## PLUSIEURS PROGRAMMES DANS LA SEMAINE :
+
+Exemple : 2 programmes -> 5 jours (Lundi au Vendredi) | 2 jours (Samedi, Dimanche).
+                  2 plages horaires pour le programme 1 -> 12 heures, 20°C | 12 heures, 22°C.
+                  3 plages horaires pour le programme 2 -> 8 heures, 20°C | 8 heures, 18°C | 8 heures, 16°C.
+
+Étape 1 : Indiquez le nombre de programmes qui auront des plages horaires et températures différentes.
+          
+Étape 2 : Indiquez le nombre de jours que le programme englobe. (Exemple : 5 et 2).
+
+Étape 3 : Déterminez le nombre de plages horaires quotidiennes. (Exemple : 2 et 3).
+
+Étape 4 : Indiquez le temps de chauffe/refroidissement et les températures que vous souhaitez paramétrer en suivant les indications.
+
+Étape 5 : Vous trouverez votre moyenne de température hebdomadaire. 
+
+
+### contact : info@torqprotocol.io";
+
+            readmeForm.Controls.Add(textBox);
+
+            textBox.Select(0, 0);
 
             readme.Controls.RemoveByKey("VScrollBar");
 

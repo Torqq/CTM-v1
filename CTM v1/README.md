@@ -24,14 +24,15 @@ L'objectif de ce programme est d'aider la population à gérer plus efficacement
 
 ## Description
 
-Programme facilitant le réglage des paramètres d'un thermostat qui gère le chauffage et/ou la climatisation. Vous pourrez simuler des plages horaires,
-le programme vous donnera la moyenne de chauffage/refroidissement à la semaine et au mois.
+Programme facilitant le paramétrage d'un thermostat qui gère le chauffage et/ou la climatisation. Vous pourrez simuler des plages horaires,
+le programme vous donnera la moyenne de chauffage/refroidissement à la semaine. La plupart des thermostats proposent des programmes hebdomadaires, 
+la température moyenne hebdomadaire reflète la température moyenne mensuelle.
 
 **Fonctions :**
 
 - Un Programme : Utile si vous utilisez un seul programme qui englobe toute la semaine.
 
-- Plusieurs programmes : Utile si vous utilisez plusieurs programmes avec des plages horaires différentes dans la semaine. Exemple, un programme de 5 jours du Lundi au Vendredi, un programme de 2 jours le Samedi et Dimanche.
+- Plusieurs programmes : Utile si vous utilisez plusieurs programmes avec des plages horaires différentes dans la semaine. 
 
 **Fonctions à venir (v1.1) :**
 
@@ -45,5 +46,5 @@ le programme vous donnera la moyenne de chauffage/refroidissement à la semaine 
 
 ### Prérequis
 
-Testé sur Windows 11.
+Compatibilité windows 7, Testé sur Windows 11. 
 

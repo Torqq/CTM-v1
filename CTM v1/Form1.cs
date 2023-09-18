@@ -1330,7 +1330,7 @@ Exemple : 2 programmes -> 5 jours (Lundi au Vendredi) | 2 jours (Samedi, Dimanch
                 programmes.Add(programme);
             }
 
-            double reponse = CalculerTemperatureMoyenneSemaine();
+            string reponse = CalculerTemperatureMoyenneSemaine();
             reponseCalcul.Text = reponse.ToString();
 
             reponseCalcul.Location = finalLocation;
@@ -1338,7 +1338,7 @@ Exemple : 2 programmes -> 5 jours (Lundi au Vendredi) | 2 jours (Samedi, Dimanch
         }
 
 
-        public double CalculerTemperatureMoyenneSemaine()
+        public string CalculerTemperatureMoyenneSemaine()
         {
             double sommeMoyPJ = 0.0;
             double[] moyPP = new double[nbProg];  // Obtenir une souche d'un jour par programme.
@@ -1386,9 +1386,9 @@ Exemple : 2 programmes -> 5 jours (Lundi au Vendredi) | 2 jours (Samedi, Dimanch
 
             double moyenneFinal = sommeMoyPJ / 7;
 
-            Console.WriteLine($"Température Moyenne de la Semaine : {moyenneFinal}");
+            string moyFinalFormatted = moyenneFinal.ToString("F2");
 
-            return moyenneFinal;
+            return moyFinalFormatted;
         }
     }
 }

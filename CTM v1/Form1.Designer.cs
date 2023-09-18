@@ -53,9 +53,9 @@ namespace CTM_v1
             PProgPH = new Button();
             vScrollBar = new VScrollBar();
             panel1 = new Panel();
+            notice = new Button();
             readme = new Button();
             pictureBox1 = new PictureBox();
-            notice = new Button();
             colorDialog1 = new ColorDialog();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -294,6 +294,16 @@ namespace CTM_v1
             panel1.TabIndex = 14;
             panel1.Scroll += VScrollBar_Scroll;
             // 
+            // notice
+            // 
+            notice.Location = new Point(1106, 47);
+            notice.Name = "notice";
+            notice.Size = new Size(100, 29);
+            notice.TabIndex = 20;
+            notice.Text = "Notice";
+            notice.UseVisualStyleBackColor = true;
+            notice.Click += notice_Click;
+            // 
             // readme
             // 
             readme.Location = new Point(1106, 12);
@@ -314,16 +324,6 @@ namespace CTM_v1
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
-            // notice
-            // 
-            notice.Location = new Point(1106, 47);
-            notice.Name = "button1";
-            notice.Size = new Size(100, 29);
-            notice.TabIndex = 20;
-            notice.Text = "Notice";
-            notice.UseVisualStyleBackColor = true;
-            notice.Click += notice_Click;
-            // 
             // CTM
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -333,6 +333,7 @@ namespace CTM_v1
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = SystemColors.ActiveCaptionText;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CTM";
             Text = "CTM - Calculateur de température moyenne";
             panel1.ResumeLayout(false);

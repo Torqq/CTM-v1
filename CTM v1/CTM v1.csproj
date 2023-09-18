@@ -7,14 +7,16 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
     <BaseOutputPath>C:\Users\bilal\OneDrive\Codage\CTM v1\Debug</BaseOutputPath>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Title>Calculateur de temperature moyenne</Title>
     <Authors>$(AssemblyName) BA</Authors>
-    <Company>$(Authors) Torqq BC</Company>
-    <PackageIcon>Logo.png</PackageIcon>
+    <Company>$(Authors) Torq BC</Company>
+    <PackageIcon>Icon.png</PackageIcon>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,10 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\Logo.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
     <None Include="LICENSE" />
   </ItemGroup>
 
@@ -45,6 +43,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Icon.ico">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Update="README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
